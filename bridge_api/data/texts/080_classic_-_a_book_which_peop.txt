@@ -1,0 +1,3 @@
+TEXT: “′Classic′ - a book which people praise and don't read.”
+AUTHOR: Mark Twain
+TAGS: books, classic, reading

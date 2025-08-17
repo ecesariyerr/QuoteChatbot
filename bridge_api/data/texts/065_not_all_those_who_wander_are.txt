@@ -1,0 +1,3 @@
+TEXT: “Not all those who wander are lost.”
+AUTHOR: J.R.R. Tolkien
+TAGS: bilbo, journey, lost, quest, travel, wander

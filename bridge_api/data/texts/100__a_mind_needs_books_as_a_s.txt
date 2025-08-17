@@ -1,0 +1,3 @@
+TEXT: “... a mind needs books as a sword needs a whetstone, if it is to keep its edge.”
+AUTHOR: George R.R. Martin
+TAGS: books, mind

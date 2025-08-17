@@ -1,0 +1,3 @@
+TEXT: “To die will be an awfully big adventure.”
+AUTHOR: J.M. Barrie
+TAGS: adventure, love

@@ -1,0 +1,116 @@
+services:
+  # LM Studio proxy to expose host's model endpoint
+  lmstudio-proxy:
+    image: nginx:alpine
+    container_name: lmstudio-proxy
+    networks:
+      - chatnet
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.lmstudio.rule=PathPrefix(\"/v1\")"
+      - "traefik.http.routers.lmstudio.priority=10"
+      - "traefik.http.routers.lmstudio.entrypoints=web"
+      - "traefik.http.services.lmstudio.loadbalancer.server.url=http://host.docker.internal:8081"
+
+  # Traefik reverse proxy
+  traefik:
+    image: traefik:latest
+    container_name: traefik
+    command:
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
+      - "--log.level=DEBUG"
+    ports:
+      - "80:80"
+      - "8090:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    networks:
+      - chatnet
+    restart: unless-stopped
+
+  # Open WebUI at root
+  open-webui:
+    image: ghcr.io/open-webui/open-webui:main
+    container_name: open-webui
+    ports:
+      - "8080:8080"
+    volumes:
+      - open-webui:/app/backend/data
+    restart: always
+    networks:
+      - chatnet
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.openwebui.rule=PathPrefix(\"/\")"
+      - "traefik.http.routers.openwebui.priority=1"
+      - "traefik.http.routers.openwebui.entrypoints=web"
+      - "traefik.http.services.openwebui.loadbalancer.server.port=8080"
+
+  # Bridge API
+  bridge-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: bridge-api
+    environment:
+      - PORT=5055
+      - BRIDGE_URL=http://bridge-api:5055
+    ports:
+      - "5055:5055"
+    depends_on:
+      - open-webui
+    restart: always
+    networks:
+      - chatnet
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.bridge.rule=PathPrefix(\"/api/bridge\")"
+      - "traefik.http.routers.bridge.priority=10"
+      - "traefik.http.routers.bridge.entrypoints=web"
+      - "traefik.http.services.bridge.loadbalancer.server.port=5055"
+      - "traefik.http.routers.bridge.middlewares=bridge-stripprefix"
+      - "traefik.http.middlewares.bridge-stripprefix.stripprefix.prefixes=/api/bridge"
+
+  # RAG API
+  rag-api:
+    build:
+      context: ./rag_api
+      dockerfile: Dockerfile
+    container_name: erciyes-rag-api
+    ports:
+      - "7000:7000"
+    environment:
+      - DOCS_DIR=/data/texts
+      - LMSTUDIO_BASE=http://host.docker.internal:8081/v1
+      - MODEL_NAME=openhermes-2.5-mistral-7b
+      - MAX_TOKENS=1024
+      - CHUNK_SIZE=400
+      - CHUNK_OVERLAP=150
+      - TOP_K=4
+    volumes:
+      - ./data/texts:/data/texts
+    restart: unless-stopped
+    networks:
+      - chatnet
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.rag.rule=PathPrefix(\"/api/rag\")"
+      - "traefik.http.routers.rag.priority=10"
+      - "traefik.http.routers.rag.entrypoints=web"
+      - "traefik.http.services.rag.loadbalancer.server.port=7000"
+      - "traefik.http.routers.rag.middlewares=rag-stripprefix"
+      - "traefik.http.middlewares.rag-stripprefix.stripprefix.prefixes=/api/rag"
+
+volumes:
+  open-webui:
+
+networks:
+  chatnet:
+    driver: bridge

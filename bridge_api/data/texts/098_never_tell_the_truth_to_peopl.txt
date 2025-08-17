@@ -1,0 +1,3 @@
+TEXT: “Never tell the truth to people who are not worthy of it.”
+AUTHOR: Mark Twain
+TAGS: truth

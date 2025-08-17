@@ -1,0 +1,3 @@
+TEXT: “It takes a great deal of bravery to stand up to our enemies, but just as much to stand up to our friends.”
+AUTHOR: J.K. Rowling
+TAGS: courage, friends

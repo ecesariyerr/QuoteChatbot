@@ -1,0 +1,11 @@
+flask
+flask-cors
+requests
+python-dotenv
+
+uvicorn
+
+fastapi
+requests
+beautifulsoup4
+scikit-learn

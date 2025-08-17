@@ -1,0 +1,3 @@
+TEXT: “The truth." Dumbledore sighed. "It is a beautiful and terrible thing, and should therefore be treated with great caution.”
+AUTHOR: J.K. Rowling
+TAGS: truth

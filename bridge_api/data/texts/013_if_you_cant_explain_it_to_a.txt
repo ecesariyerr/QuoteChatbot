@@ -1,0 +1,3 @@
+TEXT: “If you can't explain it to a six year old, you don't understand it yourself.”
+AUTHOR: Albert Einstein
+TAGS: simplicity, understand

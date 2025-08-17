@@ -1,0 +1,3 @@
+TEXT: “Life isn't about finding yourself. Life is about creating yourself.”
+AUTHOR: George Bernard Shaw
+TAGS: inspirational, life, yourself

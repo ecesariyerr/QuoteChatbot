@@ -1,0 +1,3 @@
+TEXT: “I have never let my schooling interfere with my education.”
+AUTHOR: Mark Twain
+TAGS: education

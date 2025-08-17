@@ -1,0 +1,3 @@
+TEXT: “You can never get a cup of tea large enough or a book long enough to suit me.”
+AUTHOR: C.S. Lewis
+TAGS: books, inspirational, reading, tea

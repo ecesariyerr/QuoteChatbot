@@ -1,0 +1,3 @@
+TEXT: “There is no friend as loyal as a book.”
+AUTHOR: Ernest Hemingway
+TAGS: books, friends, novelist-quotes

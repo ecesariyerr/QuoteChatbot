@@ -1,0 +1,3 @@
+TEXT: “Some people never go crazy. What truly horrible lives they must lead.”
+AUTHOR: Charles Bukowski
+TAGS: humor

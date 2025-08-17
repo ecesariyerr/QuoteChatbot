@@ -1,0 +1,3 @@
+TEXT: “The more that you read, the more things you will know. The more that you learn, the more places you'll go.”
+AUTHOR: Dr. Seuss
+TAGS: learning, reading, seuss

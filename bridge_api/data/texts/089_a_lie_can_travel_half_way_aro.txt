@@ -1,0 +1,3 @@
+TEXT: “A lie can travel half way around the world while the truth is putting on its shoes.”
+AUTHOR: Mark Twain
+TAGS: misattributed-mark-twain, truth

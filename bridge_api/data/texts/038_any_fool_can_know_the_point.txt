@@ -1,0 +1,3 @@
+TEXT: “Any fool can know. The point is to understand.”
+AUTHOR: Albert Einstein
+TAGS: knowledge, learning, understanding, wisdom

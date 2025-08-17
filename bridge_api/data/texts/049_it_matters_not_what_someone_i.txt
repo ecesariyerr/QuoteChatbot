@@ -1,0 +1,3 @@
+TEXT: “It matters not what someone is born, but what they grow to be.”
+AUTHOR: J.K. Rowling
+TAGS: dumbledore

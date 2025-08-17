@@ -1,0 +1,3 @@
+TEXT: “A person's a person, no matter how small.”
+AUTHOR: Dr. Seuss
+TAGS: inspirational

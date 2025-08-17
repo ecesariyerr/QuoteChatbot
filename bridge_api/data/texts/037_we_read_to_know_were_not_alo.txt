@@ -1,0 +1,3 @@
+TEXT: “We read to know we're not alone.”
+AUTHOR: William Nicholson
+TAGS: misattributed-to-c-s-lewis, reading
